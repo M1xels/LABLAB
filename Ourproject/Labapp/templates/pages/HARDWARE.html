@@ -1,0 +1,239 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UITC Laboratory Monitoring</title>
+    <link rel="icon" href="{% static 'Media/TUPLOGO.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/hardware.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+   <!-----fonts-->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <script src="{% static 'JS/hrdwr.js' %}"></script>
+</head>
+<body>
+  <!---------------------------------------------------------------------------------------NAVBAR PART----------------------------------------------------------------------------------------------------------->
+  
+  
+  <div class="menu-bar">
+    <nav class="navbar navbar-expand-lg navbar-dark stic">
+        <a class="navbar-brand" href="#"><img src="{% static 'Media/TUPLOGO.png' %}">UITC LABORATORY </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#greennavbar" aria-controls="greennavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      
+        <div class="collapse navbar-collapse" id="greennavbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link van" href="{% url 'Labapp:homepage' %}">Home Page </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle van active" href="#" id="dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Reports
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item active" href="#">Hardware<span class="sr-only">(current)</span> </a>
+                  <a class="dropdown-item " href="{% url 'Labapp:software' %}">Software</a>
+                </div>
+            </li>
+
+            <li>
+              <a class="nav-link van" href="#" data-toggle="modal" data-target="#mod">Help</a>
+            </li>
+            
+          <li class="nav-item">
+              <a class="nav-link van" href="{% url 'Labapp:index' %}">Logout</a>
+            </li>
+             
+          </ul>
+          
+        </div>
+    </nav>
+
+
+    <!---------------------------------------------------------------------------------------MODAL-------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="mod" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="dal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="MODAL1">What to do in Hardware Reports??</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+        
+    <div class="modal fade" id="dom" tabindex="-1" role="dialog" aria-labelledby="domTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="MODAL2">Notification</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Do you really want to submit this report?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="c2">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="y2">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="adds" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="dal">
+          <div class="modal-header">
+            <h6 class="modal-title" id="MODAL2">Notification</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input id="n1" type="number" min="0" max="20" placeholder="Add Row"></input>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="c1">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="y1">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-----------------------------------------------------------------------------------------BG PART----------------------------------------------------------------------------------------------------------->
+  </div>  
+  
+    
+
+
+
+  <!------------------------------------------------------------------------------------COLOR OVERLAY PART----------------------------------------------------------------------------------------------------------->
+  <!-----------------------------------------------------------------------------------------CARD PART----------------------------------------------------------------------------------------------------------->
+   
+  
+  
+  <div class="color-overlay"> </div>
+  <div id="pic" class="view drk ">
+    <div class="color-overlay"> </div>
+    <div class="container text-center"><br><br>
+      <div class="jumbotron " ><br>
+        
+          <div class="card-header">
+            Hardware Report
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              <form>
+                <div class="form-row">
+                  <div class="col-5 p-1">
+                    <input type="text" class="form-control" placeholder="Input Name" id="name">
+                  </div>
+                  <div class="col-5 p-1">
+                    <button type="button" class="btn  add" data-toggle="modal" data-target="#add" >Add Row</button><br><br>
+                  </div>
+                </div> 
+  
+  
+              </form>   
+              
+            </div>
+            <div>
+              <div class="container"  >
+                <div class="table-responsive" id="table1" >
+                    <table class="table" id="tbl_lab1">
+                        <thead scope="row" class="thead">
+                            <tr>
+                              <th scope="col">Lab no.</th>
+                              <th scope="col">PC no.</th>
+                              <th scope="col">System Unit</th>
+                              <th scope="col">Monitor</th>
+                              <th scope="col">Keyboard</th>
+                              <th scope="col">Mouse</th>
+                              <th scope="col">AVR</th>
+                              <th scope="col">Comments</th>
+              
+                            </tr>
+                          </thead>
+              
+                          <tbody class="table-dark" id="tb1">
+                            <tr id="row_data">
+                              <td> 
+                                <select class="form-control form-control-sm" id="labl">
+                                  <option>Lab 1</option>
+                                  <option>Lab 2</option>
+                                  <option>Lab 3</option>
+                                  <option>Lab 4</option>
+                                </select>
+                              </td>
+                              <td> 
+                                  <input type="number" min="0" max="50" class="form-control" placeholder="PC#" id="PCnum">
+                              </td>
+                              <td> <input type="checkbox"></td>
+                              <td> <input type="checkbox"></td>
+                              <td> <input type="checkbox"></td>
+                              <td> <input type="checkbox"></td>
+                              <td> <input type="checkbox"></td>
+                              <td> <input type="text" class="form-control" placeholder="Comment" id="com"></td>
+                            </tr>
+                        </tbody>
+                      </table>  
+              
+                </div>
+              </div>
+            </div>
+            
+            <p class="card-text">Check it properly before you live it.</p>
+  
+            
+   <!------------------------------------------------------------------------------------SECOND MODAL BUTTONS PART----------------------------------------------------------------------------------------------------------->
+            <!--id nito dati submit-->
+            <button type="button" class="btn btn-primary hah" data-toggle="modal" data-target="#dom" id="B1" disabled>
+              Submit Report
+            </button>
+            <button type="button" class="btn btn-danger hah" id="B2" onclick="cancel1()">
+              Cancel
+            </button>
+  
+          </div>
+        
+      </div>
+    
+
+    
+  </div>
+
+
+</body>
+</html>
