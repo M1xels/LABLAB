@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
@@ -9,6 +9,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import StaffRegistration, instructorRegistration
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+installed_apps = ['Labapp']
 
 def adminregistration(request):
     form = StaffRegistration()
@@ -18,12 +21,13 @@ def adminregistration(request):
             Job_description = form.cleaned_data.get("UITC Staff")
             form.instance.Job_descriptions = 'UITC Staff'
             form.save()  
-            return render(request, 'pages/LOG.html')
+            return redirect('/index')
 
     context = {
         'form':form
     }
     return render(request, 'pages/REGISTER.html', context)
+
 
 def registration(request):
     form = instructorRegistration()
@@ -33,7 +37,7 @@ def registration(request):
             job_description = form.cleaned_data.get("UITC Staff")
             form.instance.job_description = 'Computer Instructor'
             form.save()  
-            return render(request, 'pages/LOG.html')
+            return redirect('/index')
 
     context = {
         'form':form
@@ -41,9 +45,6 @@ def registration(request):
     return render(request, 'pages/REGISTER.html', context)
         
 def index(request):
-    return render(request, 'pages/LOG.html')
-
-def Login(request):
     if request.method == 'POST':
         username = request.POST.get('email')
         password = request.POST.get('password')
@@ -57,44 +58,58 @@ def Login(request):
             login(request, user)
             return redirect('/EquipmentDevice')
         else:
-            return render(request, 'pages/LOG.html')
+            messages.info(request, 'INVALID CREDENTIALS')
+    return render(request, 'pages/LOG.html')
+
 
 def logoutUser(request):
     logout(request)
-    return render(request, 'pages/LOG.html')
+    return redirect('/index')
+
 
 def register(request):
    return render(request, 'pages/REGISTER.html')   
    
+@login_required(login_url='/index')
 def homepage(request):
-   return render(request, 'pages/HOMEPAGE.html')
+    if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return render(request, 'pages/HOMEPAGE.html')
 
+@login_required(login_url='/index')
 def hardware(request):
-   return render(request, 'pages/HARDWARE.html')
+    if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return render(request, 'pages/HARDWARE.html')
 
+@login_required(login_url='/index')
 def software(request):
-   return render(request, 'pages/SOFTWARE.html')
+    if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return render(request, 'pages/SOFTWARE.html')
 
+@login_required(login_url='/index')
 def Equipmentdevice(request):
-   return render(request, 'pages/EQUIPMENT_DEVICE.html')
+    if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        return render(request, 'pages/EQUIPMENT_DEVICE.html')
 
 def EquipmentDevice(request):
     data = equipmentdevicel1.objects.last()
     return render(request, 'pages/EQUIPMENT_DEVICE.html',{'data':data})
     
-   
+@login_required(login_url='/index')
 def performrequest(request):
-    datasr = software_reports.objects.all()
-    return render(request, 'pages/PERFORM_REQUEST.html',{'datasr':datasr})
+    if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        datasr = software_reports.objects.all()
+        return render(request, 'pages/PERFORM_REQUEST.html',{'datasr':datasr})
 
 def delete(request, Pcnum):
     datasr = software_reports.objects.get(Pcnum=Pcnum)
     datasr.delete()
     return redirect('/performrequest')
     
-
+@login_required(login_url='/index')
 def records(request):
-    return render(request, 'pages/RECORDS.html')
+    if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        return render(request, 'pages/RECORDS.html')
+
 
 def equipmentdevice(request):
     if request.method=='POST':
