@@ -21,7 +21,7 @@ def adminregistration(request):
             Job_description = form.cleaned_data.get("UITC Staff")
             form.instance.Job_descriptions = 'UITC Staff'
             form.save()  
-            return redirect('/index')
+            return redirect('/Index')
 
     context = {
         'form':form
@@ -37,13 +37,14 @@ def registration(request):
             job_description = form.cleaned_data.get("UITC Staff")
             form.instance.job_description = 'Computer Instructor'
             form.save()  
-            return redirect('/index')
+            return redirect('/Index')
 
     context = {
         'form':form
     }
     return render(request, 'pages/REGISTER.html', context)
-        
+
+
 def index(request):
     if request.method == 'POST':
         username = request.POST.get('email')
@@ -59,57 +60,87 @@ def index(request):
             return redirect('/EquipmentDevice')
         else:
             messages.info(request, 'INVALID CREDENTIALS')
+    elif request.user.is_authenticated and request.user.Job_description == "UITC Staff":
+        return redirect('/EquipmentDevice')
+    elif request.user.is_authenticated and request.user.Job_description == "Computer Instructor":
+        return redirect('/homepage')
     return render(request, 'pages/LOG.html')
 
 
+def Index(request):
+    return redirect('http://127.0.0.1:8000/')
+    
+
+@login_required(login_url='/Index')
 def logoutUser(request):
     logout(request)
-    return redirect('/index')
+    request.user.Job_description = None
+    return redirect('/Index')
 
 
 def register(request):
    return render(request, 'pages/REGISTER.html')   
    
-@login_required(login_url='/index')
+@login_required(login_url='/Index')
 def homepage(request):
     if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
         return render(request, 'pages/HOMEPAGE.html')
+    elif request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        return redirect('/EquipmentDevice')
+    else:
+        return redirect('/Index')
 
-@login_required(login_url='/index')
+@login_required(login_url='/Index')
 def hardware(request):
     if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
         return render(request, 'pages/HARDWARE.html')
+    elif request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        return redirect('/EquipmentDevice')
+    else:
+        return redirect('/Index')
 
-@login_required(login_url='/index')
+@login_required(login_url='/Index')
 def software(request):
     if request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
         return render(request, 'pages/SOFTWARE.html')
+    elif request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
+        return redirect('/EquipmentDevice')
+    else:
+        return redirect('/Index')
 
-@login_required(login_url='/index')
-def Equipmentdevice(request):
+@login_required(login_url='/Index')
+def EquipmentDevice(request):
     if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
         return render(request, 'pages/EQUIPMENT_DEVICE.html')
+    elif request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return redirect('/homepage')
+    else:
+        return redirect('/Index')
 
-def EquipmentDevice(request):
-    data = equipmentdevicel1.objects.last()
-    return render(request, 'pages/EQUIPMENT_DEVICE.html',{'data':data})
     
-@login_required(login_url='/index')
+@login_required(login_url='/Index')
 def performrequest(request):
     if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
         datasr = software_reports.objects.all()
         return render(request, 'pages/PERFORM_REQUEST.html',{'datasr':datasr})
+    elif request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return redirect('/homepage')
+    else:
+        return redirect('/Index')
 
 def delete(request, Pcnum):
     datasr = software_reports.objects.get(Pcnum=Pcnum)
     datasr.delete()
     return redirect('/performrequest')
     
-@login_required(login_url='/index')
+@login_required(login_url='/Index')
 def records(request):
     if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
         return render(request, 'pages/RECORDS.html')
-
+    elif request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
+        return redirect('/homepage')
+    else:
+        return redirect('/Index')
 
 def equipmentdevice(request):
     if request.method=='POST':
@@ -136,11 +167,3 @@ def softwaredata(request):
         data = software_reports.objects.create(User_name=Uname, Lab_num=Labno, Pc_num=Pcno, Type_concern=TypeofC, Message=Mess)
         data.save()
         return redirect('/software')
-
-
-
-
-
- 
-
-
