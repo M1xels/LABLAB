@@ -36,3 +36,16 @@ function back1(){
     z.style.display = "none";
     
 }
+
+const image_input = document.querySelector("#infile"); 
+var uploaded_image = ""; 
+
+image_input.addEventListener("change", function(){
+   
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        uploaded_image = reader.result;
+        document.querySelector("#Imagepreview").style.background = 'url(${uploaded_image))'                    
+    });
+    reader.readAsDataURL(this.files[0]);
+})

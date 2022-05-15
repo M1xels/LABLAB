@@ -160,6 +160,37 @@ body{
     
 
 }
+#infile{
+    position: relative;
+    left:250px;  
+    background-color:#720000;
+    color:white;
+    -webkit-text-stroke-width:1px;
+    transition: 1s ease-in;
+    border-radius: 100px !important;
+    height: auto;
+    background: hsla(148, 42%, 18%, 0.8);
+    font-weight: bold !important;
+    font-size: 20px !important;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+}
+
+.Image-preview{
+    width: 170px;
+    border: 2px solid hsla(148, 42%, 18%, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: I#cccccc;
+    height: 170px;
+    position: relative;
+    left:325px;
+    margin: 10px;
+    background-color: #000;
+}
+
 
 #haha{
     position: relative;
