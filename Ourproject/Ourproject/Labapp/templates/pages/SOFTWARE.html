@@ -1,0 +1,191 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UITC Laboratory Monitoring</title>
+    <link rel="icon" href="{% static 'Media/TUPLOGO.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/software.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'JS/softw.js' %}"></script>
+
+    <!----fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  </head>
+<body>
+  <!---FIX SOME OF THE CSS FORMAT WHEN RESIZING-->
+  
+  <div class="menu-bar">
+    <nav class="navbar navbar-expand-lg navbar-dark stic">
+        <a class="navbar-brand" href="#"><img src="{% static 'Media/TUPLOGO.png' %}">UITC LABORATORY </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#greennavbar" aria-controls="greennavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      
+        <div class="collapse navbar-collapse" id="greennavbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link van " href="{% url 'Labapp:homepage' %}">Home Page </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle van active" href="#" id="dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Reports
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item " href="{% url 'Labapp:hardware' %}">Hardware </a>
+                  <a class="dropdown-item active" href="#">Software<span class="sr-only">(current)</span></a>
+                </div>
+            </li>
+
+            <li>
+              <a class="nav-link van" href="#" data-toggle="modal" data-target="#modal">Help</a>
+            </li>
+            
+          <li class="nav-item">
+              <a class="nav-link van" href="{% url 'Labapp:logout' %}">Logout</a>
+            </li>
+             
+          </ul>
+          
+        </div>
+    </nav>
+
+
+    <!---------------------------------------------------------------------------------------MODAL-------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="dal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="MODAL2">What to do in Software Reports??</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </body>
+    </html>
+
+
+        
+    <div class="modal fade" id="dom" tabindex="-1" role="dialog" aria-labelledby="domTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="dal">
+          <div class="modal-header">
+            <h6 class="modal-title" id="MODAL2">Notification</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="MODAL2">
+            Do you really want to submit this report?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancel2()">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" >Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>  
+  
+  <div class="color-overlay"> </div>
+  <div id="pic" class="view drk ">
+    <div class="color-overlay"> </div>
+    
+    <div class="container text-center "><br><br>
+      <div class="jumbotron" ><br>
+        
+          <div class="card-header">
+            Software Report
+          </div>
+          <div class="card-body ">
+            <div class="card-title">
+
+              <form method="post" action="/softwaredata/">
+                {%csrf_token%}
+                <div class="form-row">
+                    <div class="p-1">
+                      <input type="text" class="form-control" placeholder="Input Name" id="name1" name="Username" required> 
+                    </div>
+                    <div class="p-1">
+                      <select class="form-control form-control-sm " id="list1" value="Select type of letter" onChange="number_function (this.value, this.defaultValue)" name="TypeofConcern" required > 
+                        <option value="default">Type of letter</option>
+                        <option>Request</option>
+                        <option>Complain</option>
+                        <option>Suggest</option>
+                        <option>Others</option>
+                      </select>
+                    </div>
+                    
+                    <div class="p-1">
+                      <select class="form-control form-control-sm " id="list2" name="Labnum" required>
+                        <option value="default">Laboratory #</option>
+                        <option>Laboratory 1</option>
+                        <option>Laboratory 2</option>
+                        <option>Laboratory 3</option>
+                        <option>Laboratory 4</option>
+                      </select>
+                    </div>
+                    
+                    <div class="p-1">
+                      <input type="number" min="0" max="50" class="form-control" placeholder="PC #" id="PCnum" name="Pcnum" required>
+                    </div>
+                    
+                  
+                </div>
+                <div class="form-floating">
+              <textarea class="form-control "  placeholder="Leave a comment here" rows="10" id="textarea1" style="height: 450px" name="Message" required></textarea>
+              
+            </div>
+            <p class="card-text" >Check it properly before you send it.</p>
+
+                <!---b1 toh dati-->
+                <button type="button" class="btn btn-primary hah m" onclick="submit()" id = "B1" >
+                  Submit Report
+                </button>
+                <button type="button" class="btn btn-danger hah m"  onclick="cancel1()" id = "B2" >
+                  Cancel
+                </button> 
+              </form>
+                
+            </div>
+            
+
+
+          
+          </div>
+        
+      </div> 
+    </div>
+    
+
+    
+  </div>
+
+
+</body>
+</html>
