@@ -24,7 +24,6 @@
     <script src="{% static 'JS/hrdwr.js' %}"></script>
 </head>
 <body>
-  <!---------------------------------------------------------------------------------------NAVBAR PART----------------------------------------------------------------------------------------------------------->
   
   
   <div class="menu-bar">
@@ -64,7 +63,6 @@
     </nav>
 
 
-    <!---------------------------------------------------------------------------------------MODAL-------------------------------------------------------------------------------------------------------------------->
     <div class="modal fade" id="mod" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" id="dal">
@@ -103,7 +101,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal" id="c2">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="y2">Yes</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="y2">Yes</button>
           </div>
         </div>
       </div>
@@ -132,17 +130,7 @@
     
 
 
-  <!-----------------------------------------------------------------------------------------BG PART----------------------------------------------------------------------------------------------------------->
   </div>  
-  
-    
-
-
-
-  <!------------------------------------------------------------------------------------COLOR OVERLAY PART----------------------------------------------------------------------------------------------------------->
-  <!-----------------------------------------------------------------------------------------CARD PART----------------------------------------------------------------------------------------------------------->
-   
-  
   
   <div class="color-overlay"> </div>
   <div id="pic" class="view drk ">
@@ -155,16 +143,13 @@
           </div>
           <div class="card-body">
             <div class="card-title">
-              <form>
+              <form method='post' action = '/hardwaredata/'>
+                {%csrf_token%}
                 <div class="form-row">
                   <div class="col-5 p-1">
-                    <input type="text" class="form-control" placeholder="Input Name" id="name">
+                    <input type="text" class="form-control" placeholder="Input Name" id="name" name="name" required>
                   </div>
                 </div> 
-  
-  
-              </form>   
-              
             </div>
             <div>
               <div class="container"  >
@@ -187,7 +172,7 @@
                           <tbody class="table-dark" id="tb1">
                             <tr id="row_data">
                               <td> 
-                                <select class="form-control form-control-sm" id="labl">
+                                <select class="form-control form-control-sm" id="labl" name="labnum">
                                   <option>Lab 1</option>
                                   <option>Lab 2</option>
                                   <option>Lab 3</option>
@@ -195,14 +180,14 @@
                                 </select>
                               </td>
                               <td> 
-                                  <input type="number" min="0" max="50" class="form-control" placeholder="PC#" id="PCnum">
+                                  <input type="number" min="1" max="50" class="form-control" placeholder="PC#" id="PCnum" name="pcnum" required>
                               </td>
-                              <td> <input type="checkbox"></td>
-                              <td> <input type="checkbox"></td>
-                              <td> <input type="checkbox"></td>
-                              <td> <input type="checkbox"></td>
-                              <td> <input type="checkbox"></td>
-                              <td> <input type="text" class="form-control" placeholder="Comment" id="com"></td>
+                              <td> <input type="checkbox" name="sys_unit"></td>
+                              <td> <input type="checkbox"name="mntor"></td>
+                              <td> <input type="checkbox"name="kboard"></td>
+                              <td> <input type="checkbox" name="mouse"></td>
+                              <td> <input type="checkbox" name="AVR"></td>
+                              <td> <input type="text" class="form-control" placeholder="Comment" id="com" name="comment" required></td>
                             </tr>
                         </tbody>
                       </table>  
@@ -216,13 +201,13 @@
             
    <!------------------------------------------------------------------------------------SECOND MODAL BUTTONS PART----------------------------------------------------------------------------------------------------------->
             <!--id nito dati submit-->
-            <button type="button" class="btn btn-primary hah" data-toggle="modal" data-target="#dom" id="B1" disabled>
+            <button type="button" onclick="submit()" class="btn btn-primary hah" id="B1" disabled>
               Submit Report
             </button>
             <button type="button" class="btn btn-danger hah" id="B2" onclick="cancel1()">
               Cancel
             </button>
-  
+          </form>
           </div>
         
       </div>

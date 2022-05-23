@@ -13,11 +13,13 @@ urlpatterns = [
     path('software/', views.software, name='software'),
     path('softwaredata/', views.softwaredata, name='softwaredata'),
     path('hardware/', views.hardware, name='hardware'),
+    path('hardwaredata/', views.hardwaredata, name='hardwaredata'),
     path('equipmentdevice/', views.equipmentdevice, name='equipmentdevice'),
     path('EquipmentDevice/', views.EquipmentDevice, name='EquipmentDevice'),
     path('performrequest/', views.performrequest, name='performrequest'),
+    path('update/<int:id>', views.update, name='update'),
     path('records/', views.records, name='records'),
-    path('delete/<int:Pcnum>', views.delete, name='delete'),
+    path('delete/<int:id>', views.delete, name='delete'),
     path('logout/', views.logoutUser, name='logout'),
 
 

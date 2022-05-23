@@ -2,6 +2,9 @@ from pickle import TRUE
 from sqlite3 import Date
 from django.db import models
 import os
+from django.db.models.deletion import CASCADE
+import django.utils.timezone
+
 from django.contrib.auth.models import AbstractUser
 
 class register1(AbstractUser):
@@ -10,12 +13,13 @@ class register1(AbstractUser):
         ('UITC Staff', 'UITC Staff'),
     ]
     Job_description = models.CharField(max_length = 40, null=False, choices=job_option)
-    id = models.AutoField(primary_key= True)
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
 
 
 
 class index(models.Model):
-    User_name = models.CharField(max_length= 50, primary_key= True, null=False)
+    id = models.ForeignKey(register1,unique=True, on_delete= CASCADE, primary_key= True,)
+    User_name = models.CharField(max_length= 50, null=False)
     Password_data =models.CharField(default= "", max_length =40, null=False, unique = True)
 
 
@@ -29,9 +33,8 @@ class homepage(models.Model):
         ('OCCUPIED ', 'OCCUPIED '),
 
         ]
-  
     Section_name= models.CharField(max_length= 50, null=False)
-    Date = models.DateField(primary_key= True, null=False)
+    date = models.DateField( default=django.utils.timezone.now, )
     Time_in = models.TimeField(null=False)
     Time_out = models.TimeField(null=False)
     Status = models.CharField(max_length=50, choices = Availability, null=False)
@@ -48,13 +51,14 @@ class hardware_reports(models.Model):
         ('LABORATORY 3', 'LABORATORY 3'),
         ('LABORATORY 4', 'LABORATORY 4'),
         ]
-
+    name = models.CharField(max_length=100, null = False)
     Lab_num = models.CharField(max_length=50, choices = Laboratories, null=False)
-    Pc_num = models.IntegerField(primary_key = True, null=False)
-    System_unit = models.BooleanField()
-    Mouse = models.BooleanField()
-    Avr = models.BooleanField()
-    Monitor = models.BooleanField()
+    Pc_num = models.IntegerField(null=False)
+    System_unit = models.CharField(max_length=10, null=True)
+    Monitor = models.CharField(max_length=10, null=True)
+    keyboard = models.CharField(max_length=10, null=True)
+    Mouse = models.CharField(max_length=10, null=True)
+    Avr = models.CharField(max_length=10, null=True)
     Comments = models.CharField(max_length=50)
 
     
@@ -72,7 +76,6 @@ class software_reports(models.Model):
         ('Suggest', 'Suggest'),
         ('Others', 'Others'),
         ]
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     User_name = models.CharField(max_length=100, null=False)
     Lab_num = models.CharField(max_length=50, choices = Laboratory_num, null=False)
     Pc_num = models.IntegerField(null=False)
@@ -98,12 +101,12 @@ class equipmentdevicel1(models.Model):
 
 
 class perform_request(models.Model):
-    date = models.DateField(primary_key = True)
+    date = models.DateField(default=django.utils.timezone.now)
     name = models.CharField(max_length=100)
-    Lab_num = models.PositiveIntegerField()
+    Lab_num = models.CharField(max_length=50)
     Pc_num = models.PositiveIntegerField()
     Type_report = models.CharField(max_length=100)
-    remarks = models.CharField(max_length=20)
+    remarks = models.CharField(max_length=300)
     s_choices = [
         ('Ongoing', 'Ongoing'),
         ('Available to use', 'Available to use'),

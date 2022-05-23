@@ -18,5 +18,5 @@ class instructorRegistration(UserCreationForm):
         model = register1
         fields = ['username','first_name','last_name', 'email', 'password1', 'password2', 'Job_description']
 
-        
+
         

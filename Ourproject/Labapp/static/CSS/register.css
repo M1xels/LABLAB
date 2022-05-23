@@ -14,8 +14,8 @@ img{
     height: 100%;
     display: flex ;
     transition: .2s ease-in;
-    height: 500px;
-    width: 800px;
+    height: 600px;
+    width: 900px;
     position: relative;
     right: 40%;
     
@@ -25,11 +25,10 @@ img{
     padding-left: 100px;
     border-radius: 1cm;
     box-shadow: 12px 12px 22px black ;
-    height: 500px;
-    width: 1300px;
+    height: 600px;
+    width: 1400px;
     position: relative;
     left: 5%;
-    
     
     
  
@@ -71,16 +70,15 @@ body{
     align-items: center;
     place-items: center;
     place-content: center;
-    font-size: 30px;
+
     padding-right: 0px;
     padding-left: 120px;
-    margin-top: 5px;
+    
     
     
    
     
 }
-/* ito yung binago mo micoooooo*/
 .a{
     place-items: center;
     place-content: center; 
@@ -96,132 +94,6 @@ body{
     padding-top:50px ;
 
 }
-.up{
-    padding-top:10px ;
-}
-
-.up1{
-    margin-top: 20px;
-}
-
-#a1{
-    margin-top: 50px !important;
-}
-
-.circle1{
-    background-color: green;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    float: left !important;
-    margin-right: 10px;
-
-}
-.circle2{
-    background-color: hsla(120, 100%, 25%, 0.432);
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    float: left !important;
-    
-    
-
-}
-.circle3{
-    background-color: hsla(120, 100%, 25%, 0.432);
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    float: left !important;
-    padding: 10px;
-    margin-left: 10px;
-    
-
-}
-.circle4{
-    background-color: hsl(120, 100%, 25%);
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    float: left !important;
-    
-    
-
-}
-.circle5{
-    background-color:hsl(120, 100%, 25%);
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    float: left !important;
-    padding: 10px;
-    margin-left: 10px;
-    
-    
-
-}
-#infile{
-    position: relative;
-    left:250px;  
-    background-color:#720000;
-    color:white;
-    -webkit-text-stroke-width:1px;
-    transition: 1s ease-in;
-    border-radius: 100px !important;
-    height: auto;
-    background: hsla(148, 42%, 18%, 0.8);
-    font-weight: bold !important;
-    font-size: 20px !important;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 10px;
-}
-
-.Image-preview{
-    width: 170px;
-    border: 2px solid hsla(148, 42%, 18%, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: I#cccccc;
-    height: 170px;
-    position: relative;
-    left:325px;
-    margin: 10px;
-    background-color: #000;
-    border-radius: 25%;
-}
-
-
-#haha{
-    position: relative;
-    left:250px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ito yung binago mo mic*/
 .form-row input {
     background-color: rgb(255, 255, 255);
@@ -239,16 +111,7 @@ body{
     margin: 0px;
     
 }
-
-#form2{
-    display: none;
-    transition: .2s ease-in !important;
-}
-
-#form3{
-    display: none;
-    transition: .2s ease-in !important;
-}
+      
 
 
 
@@ -264,22 +127,23 @@ body{
     z-index: 1;
     
 }
-.button1:hover{
+#log:hover{
     
     background-color: #ffffff;
     transition: .2s ease-in;
     color: #720000;
 }
-.button1{
+#log{
     background-color:#720000;
     color:white;
     -webkit-text-stroke-width:1px;
     transition: 1s ease-in;
     border-radius: 100px !important;
-    width: 190px !important;
+    width: 80% ;
     background: hsla(148, 42%, 18%, 0.8);
-    font-weight: bold !important;
-    font-size: 20px !important;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px auto;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     
     
@@ -291,7 +155,7 @@ body{
     -webkit-text-stroke-width:1px;
     transition: 1s ease-in;
     border-radius: 100px !important;
-    width: 190px !important;
+    width: auto ;
     padding-left: 40px;
     padding-right: 40px;
 
@@ -311,37 +175,6 @@ body{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 #cancel:hover{
-    
-    background-color: #ffffff;
-    transition: .2s ease-in;
-    color: #720000;
-}
-#cancel1{
-    background-color:#720000;
-    color:white;
-    -webkit-text-stroke-width:1px;
-    transition: 1s ease-in;
-    border-radius: 100px !important;
-    width: 100% ;
-    padding-left: 40px;
-    padding-right: 40px;
-
-    /** to adjust the height of the button you need the rest of properties**/
-    /*
-    place-items: center;
-    height: 30px;
-    justify-content: center;
-    display: flex;
-    margin: 20px auto;
-    padding: 10px ;*/
-    /** lahat ng nasa taas**/
-
-    background: hsla(148, 42%, 18%, 0.8);
-    font-weight: bold;
-    font-size: 20px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-#cancel1:hover{
     
     background-color: #ffffff;
     transition: .2s ease-in;
@@ -427,7 +260,6 @@ header,
 
 
 /*size1*/
-/********
 @media only screen and (max-width: 1580px)  {
     img{
         border-bottom-left-radius: 1cm ;
@@ -525,7 +357,7 @@ header,
     }
     
 }
-***/
+
 
 
 /********************************************************************************************adjust***************************************************************************************************************************/

@@ -11,7 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
+    <script src="{% static 'JS/performreq.js' %}"></script>
+  </head>
 <body>
 
   <div class="menu-bar">
@@ -57,48 +58,46 @@
               <h2 id="pangalan">REPORTS</h2> <br></br>
             </div>
             <div class="card-body">
-              <table class="table table-striped" id="tbl_report">
-                <thead class="thead">
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Lab No.</th>
-                    <th scope="col">PC No.</th>
-                    <th scope="col">Type of Report</th>
-                    <th scope="col">Remarks</th>
-                    <th scope="col">Status</th>
+              <form method="post">
+                {%csrf_token%}
+                <table class="table table-striped" id="tbl_report">
+                  <thead class="thead">
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Lab No.</th>
+                      <th scope="col">PC No.</th>
+                      <th scope="col">Type of Report</th>
+                      <th scope="col">Remarks</th>
+                      <th scope="col">Status</th>
 
 
-                  </tr>
-                </thead>
-                <tbody class="table-color">
-                  {% for Sreport in datasr %}
-                  <tr id="row_data">
-                    
-                    <td>{{Sreport.User_name}}</td>
-                    <td>{{Sreport.Lab_num}}</td>
-                    <td>{{Sreport.Pc_num}}</td>
-                    <td>{{Sreport.Type_concern}}</td>
-                    <td>{{Sreport.Message}}</td>
-                    <td>
-                      <select class="form-control form-control-sm">
-                        <option>Ongoing</option>
-                        <option >Available to use</option>
-                      </select>
-                    </td>
-                    
-                  </tr>
-                
-                </tbody>
-                {% endfor %}
-                <tfoot>
-                  <tr>
-                    <td>
-                      <button class="btn btn-lg" id="btn">Save</button>
-                    </td>
-                  </tr>
-                </tfoot>
-                
-              </table>
+                    </tr>
+                  </thead>
+                  <tbody class="table-color">
+                    <tr id="row_data" >
+                      {% for report in data %}
+                      <td>{{report.name}}</td>
+                      <td>{{report.Lab_num}}</td>
+                      <td>{{report.Pc_num}}</td>
+                      <td>{{report.Type_report}}</td>
+                      <td>{{report.remarks}}</td>
+                      <td>
+                        <a  type='button' id = 'Save' href="{% url 'Labapp:update' report.pk %}" >Available</a>
+                      </td>
+                      <td>
+                        <a  type='button' id = 'Save' href="{% url 'Labapp:delete' report.pk %}" >Delete</a>
+                      </td>
+                    </tr>
+                      {% endfor%}
+                  </tbody>
+                  
+                  
+                  <tfoot>
+
+                  </tfoot>
+                  
+                </table>
+              </form>
             </div>
           </div>
         </div>

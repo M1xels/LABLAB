@@ -117,21 +117,47 @@ def EquipmentDevice(request):
     else:
         return redirect('/Index')
 
+def update(request, id):
+    a = perform_request.objects.get(id=id)
+    b = '<QuerySet [<perform_request: ' + str(a) + '>]>'
+    print(a)
+    for x in perform_request.objects.only('id').filter(status= "Ongoing"):
+        
+        print(x)
+        if a == x:
+            d = "a"
+            print(d)
+            x = perform_request.objects.filter(id=id).update(status="Available")
+            break
+    return redirect('/performrequest')
+
+def delete(request, id):
+    a = perform_request.objects.get(id=id)
+    b = '<QuerySet [<perform_request: ' + str(a) + '>]>'
+    print(a)
+    for x in perform_request.objects.only('id').filter(status= "Ongoing"):
+        
+        print(x)
+        if a == x:
+            d = "a"
+            print(d)
+            x = perform_request.objects.get(id=id).delete()
+            break
+    return redirect('/performrequest')
+
     
+
 @login_required(login_url='/Index')
 def performrequest(request):
     if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
-        datasr = software_reports.objects.all()
-        return render(request, 'pages/PERFORM_REQUEST.html',{'datasr':datasr})
+        data = perform_request.objects.filter(status = "Ongoing")
+        return render(request, 'pages/PERFORM_REQUEST.html',{'data':data})
     elif request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
         return redirect('/homepage')
     else:
         return redirect('/Index')
 
-def delete(request, Pcnum):
-    datasr = software_reports.objects.get(Pcnum=Pcnum)
-    datasr.delete()
-    return redirect('/performrequest')
+
     
 @login_required(login_url='/Index')
 def records(request):
@@ -163,7 +189,36 @@ def softwaredata(request):
         Pcno = request.POST.get('Pcnum')
         TypeofC = request.POST.get('TypeofConcern')
         Mess = request.POST.get('Message')
-        
+        status = 'Ongoing'
         data = software_reports.objects.create(User_name=Uname, Lab_num=Labno, Pc_num=Pcno, Type_concern=TypeofC, Message=Mess)
+        data1 = perform_request.objects.create(name=Uname, Lab_num=Labno, Pc_num=Pcno, Type_report=TypeofC, remarks=Mess, status = status)
+        data1.save()
         data.save()
         return redirect('/software')
+
+def hardwaredata(request):
+    
+    if request.method=='POST':
+        name = request.POST.get('name')
+        labnum = request.POST.get('labnum')
+        pcno = request.POST.get('pcnum')
+        s_unit = request.POST.get('sys_unit')
+        mtr = request.POST.get('mntor')
+        kbrd = request.POST.get('kboard')
+        ms = request.POST.get('mouse')
+        avr = request.POST.get('AVR')
+        cmmt = request.POST.get('comment')
+        status = 'Ongoing'
+        data = hardware_reports.objects.create(name=name, Lab_num=labnum, Pc_num=pcno, System_unit=s_unit, Monitor=mtr, keyboard=kbrd, Mouse=ms, Avr=avr, Comments=cmmt )
+        data1 = perform_request.objects.create(name=name, Lab_num=labnum, Pc_num=pcno, Type_report=s_unit, remarks=cmmt, status = status)
+        data1.save()
+        data.save()
+        return redirect('/hardware')
+
+
+
+
+
+ 
+
+
