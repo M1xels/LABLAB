@@ -137,7 +137,15 @@
     <div class="color-overlay"> </div>
     <div class="container text-center"><br><br>
       <div class="jumbotron " ><br>
-        
+          {%for message in messages%}
+            {% if message.tags == 'success'%}
+              <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+              <script>
+                  var m = "{{message}}";
+                  swal("Congrats", m, "success")
+              </script>
+            {% endif %}
+          {%endfor%}
           <div class="card-header">
             Hardware Report
           </div>

@@ -15,12 +15,15 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-     
+    <script src="{% static 'JS/reg.js' %}"> </script>
+
     <!-----fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
+    
+    
 </head>
 <body>
     
@@ -31,7 +34,18 @@
                         <div class="col-lg-5 n ">
                             <img src="{% static 'Media/GREENBG.png' %}" class="img-responsive" alt="image">
                         </div>
+                        {%for message in messages%}
+                            {% if message.tags == 'warning'%}
+                            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                            <script>
+                            var m = "{{message}}";
+                            swal("Invalid", m, "warning")
+                            </script>
+                            {% endif %}
+                        {%endfor%} 
+        
                         <div class="col-lg-7  text-center">
+                            
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="form-row a ">
@@ -46,7 +60,7 @@
                                 </div>
                                 <div class="form-row n" >
                                     <a>
-                                        <button type="button" class="btn" id="cancel" >Picture Muna walang function</button> 
+                                        <button type="button" class="btn" id="cancel" >Space for picture</button> 
                                     </a>
                                 </div>
                                 <div class="form-row n" >
@@ -84,7 +98,7 @@
                                     <div class="col-4">
                                         <a>
                                             <button type="submit" class="btn" id="log" >Register</button>
-                                            <button type="button" class="btn" id="cancel" >Cancel</button> 
+                                            <button type="button" class="btn" id="cancel" onclick="cancel1()">Cancel</button> 
                                         </a>
                         
                                     </div>

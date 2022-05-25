@@ -52,6 +52,23 @@
   <div id="pic" class="view drk ">
     <div class="color-overlay"></div>
       <div class="jumbotron" >
+        
+        {%for message in messages%}
+            {% if message.tags == 'info'%}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                var m = "{{message}}";
+                swal("Delete", m, "info")
+            </script>
+            {% endif %}
+            {% if message.tags == 'success'%}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                var m = "{{message}}";
+                swal("Congrats", m, "success")
+            </script>
+            {% endif %}
+        {%endfor%}
         <div class="container text-center"><br><br>
           <div class="table-responsive">
             <div class="card-header">

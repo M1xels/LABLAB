@@ -20,12 +20,16 @@ def adminregistration(request):
         if form.is_valid():
             Job_description = form.cleaned_data.get("UITC Staff")
             form.instance.Job_descriptions = 'UITC Staff'
-            form.save()  
+            form.save()
+            messages.success(request, "You are now Registered")  
             return redirect('/Index')
-
+        else:
+            messages.warning(request, "Recheck all your input info")
     context = {
         'form':form
     }
+    
+    
     return render(request, 'pages/REGISTER.html', context)
 
 
@@ -36,12 +40,16 @@ def registration(request):
         if form.is_valid():
             job_description = form.cleaned_data.get("UITC Staff")
             form.instance.job_description = 'Computer Instructor'
-            form.save()  
+            form.save()
+            messages.success(request, 'You are now registered')
             return redirect('/Index')
-
+        else:
+            messages.warning(request, "Recheck all your input info")
     context = {
         'form':form
     }
+    
+    
     return render(request, 'pages/REGISTER.html', context)
 
 
@@ -59,11 +67,13 @@ def index(request):
             login(request, user)
             return redirect('/EquipmentDevice')
         else:
-            messages.info(request, 'INVALID CREDENTIALS')
+            messages.warning(request, 'Invalid Credentials')    
+        
     elif request.user.is_authenticated and request.user.Job_description == "UITC Staff":
         return redirect('/EquipmentDevice')
     elif request.user.is_authenticated and request.user.Job_description == "Computer Instructor":
         return redirect('/homepage')
+    
     return render(request, 'pages/LOG.html')
 
 
@@ -129,6 +139,7 @@ def update(request, id):
             print(d)
             x = perform_request.objects.filter(id=id).update(status="Available")
             break
+    messages.success(request, "Successfully done")
     return redirect('/performrequest')
 
 def delete(request, id):
@@ -143,6 +154,7 @@ def delete(request, id):
             print(d)
             x = perform_request.objects.get(id=id).delete()
             break
+    messages.info(request, "Successfully deleted")
     return redirect('/performrequest')
 
     
@@ -194,6 +206,7 @@ def softwaredata(request):
         data1 = perform_request.objects.create(name=Uname, Lab_num=Labno, Pc_num=Pcno, Type_report=TypeofC, remarks=Mess, status = status)
         data1.save()
         data.save()
+        messages.success(request, "Your sofware report have been  successfully submitted")
         return redirect('/software')
 
 def hardwaredata(request):
@@ -213,6 +226,7 @@ def hardwaredata(request):
         data1 = perform_request.objects.create(name=name, Lab_num=labnum, Pc_num=pcno, Type_report=s_unit, remarks=cmmt, status = status)
         data1.save()
         data.save()
+        messages.success(request, "Your hardware report have been successfully submitted")
         return redirect('/hardware')
 
 
