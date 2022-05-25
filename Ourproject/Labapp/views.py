@@ -206,7 +206,7 @@ def softwaredata(request):
         data1 = perform_request.objects.create(name=Uname, Lab_num=Labno, Pc_num=Pcno, Type_report=TypeofC, remarks=Mess, status = status)
         data1.save()
         data.save()
-        messages.success(request, "Your sofware report have been  successfully submitted")
+        messages.success(request, "Software Report submitted")
         return redirect('/software')
 
 def hardwaredata(request):
@@ -226,7 +226,7 @@ def hardwaredata(request):
         data1 = perform_request.objects.create(name=name, Lab_num=labnum, Pc_num=pcno, Type_report=s_unit, remarks=cmmt, status = status)
         data1.save()
         data.save()
-        messages.success(request, "Your hardware report have been successfully submitted")
+        messages.success(request, "Hardware Report submitted")
         return redirect('/hardware')
 
 
