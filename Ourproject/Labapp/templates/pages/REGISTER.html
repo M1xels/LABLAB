@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="{% static 'JS/reg.js' %}"> </script>
+    
 
     <!-----fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,300&display=swap" rel="stylesheet">
     
+    <script src="{% static 'JS/reg.js' %}"> </script>
     
 </head>
 <body>
@@ -46,22 +47,17 @@
         
                         <div class="col-lg-7  text-center">
                             
-                            <form method="post">
+                            <form id="form1" method="post">
                                 {% csrf_token %}
                                 <div class="form-row a ">
-                                    <div class="col-lg-7 text-center naa">
-                                        <h4 class="font-weight-bold pt-3 n " >SIGN UP HERE</h4>
+                                    <div class="col-lg-7 text-center ">
+                                        <h3 class="font-weight-bold  n " >PERSONAL INFO</h3>
                                     </div>
                                 </div>
                                 <div class="form-row a">
-                                    <div class="col-lg-8 text-center">
-                                        <h6 class="font-weight-bold na">Create an account</h6>
+                                    <div class="col-lg-8 text-center ">
+                                        <h6 class="font-weight-bold n">Fill up Here</h6>
                                     </div>
-                                </div>
-                                <div class="form-row n" >
-                                    <a>
-                                        <button type="button" class="btn" id="cancel" >Space for picture</button> 
-                                    </a>
                                 </div>
                                 <div class="form-row n" >
                                     <label class="row-2">Username {{form.username}}  </label>
@@ -79,9 +75,51 @@
                                     <label class="row-2">Email {{form.email}}  </label>
                                     
                                 </div>
+                                <div class="form-row n">
+                                    <div class="col-4 bp">
+                                        <a>
+                                            <button type="button" class="btn" id="cancel" >Cancel</button> 
+                                            
+                                        </a>
+                            
+                                    </div>
+                                    <div class="col-4 bp">
+                                        <a>
+                                            <button type="submit" class="btn" id="log" onclick="toggle()">Next</button>
+                                            
+                                        </a>
+                            
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <form id="form2" method="post" >
+                                {% csrf_token %}
+                                <div class="form-row a ">
+                                    <div class="col-lg-7 text-center ">
+                                        <h3 class="font-weight-bold nm" >CREATE ACCOUNT</h3>
+                                    </div>
+                                </div>
+                                <div class="form-row a">
+                                    <div class="col-lg-8 text-center">
+                                        <h6 class="font-weight-bold n">Fill up Here</h6>
+                                    </div>
+                                </div>
+                                <div class="form-row n">
+                                    <div class="wrapper" id="preview">
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-row1" >
+                                    <a>
+                                       <input type="file" id="input-file" accept="image/png, image/jpeg">
+                                    </a>
+                                </div>
+                               
+                                
                                 <div class="form-row n ">
                                     <label class="row-2">Password {{form.password1}}  </label>
-                    
+                            
                                     
                                 </div>
                                 <div class="form-row n ">
@@ -95,12 +133,19 @@
                                     
                                 </div>
                                 <div class="form-row n">
-                                    <div class="col-4">
+                                    <div class="col-4 bp">
+                                        <a>
+                                            <button type="button" class="btn" id="cancel" onclick="toggle1()">Cancel</button> 
+                                            
+                                        </a>
+                            
+                                    </div>
+                                    <div class="col-4 bp">
                                         <a>
                                             <button type="submit" class="btn" id="log" >Register</button>
-                                            <button type="button" class="btn" id="cancel" onclick="cancel1()">Cancel</button> 
+                                            
                                         </a>
-                        
+                            
                                     </div>
                                 </div>
                             </form>

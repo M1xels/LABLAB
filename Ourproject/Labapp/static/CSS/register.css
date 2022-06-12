@@ -72,13 +72,48 @@ body{
     place-content: center;
 
     padding-right: 0px;
-    padding-left: 120px;
+    padding-left: 160px;
+
     
     
     
    
     
 }
+/***dagdag**/
+.form-row1{
+    
+    align-items: center;
+    place-items: center;
+    place-content: center;
+
+    padding-right: 0px;
+    padding-left: 200px;
+
+}
+
+.nm{
+    padding-left: 150px;
+}
+.bp{
+    padding-top: 30px;
+}
+.wrapper{
+    height: 150px;
+    width: 150px;
+    border: #000;
+    border-radius: 10px ;
+    background-color: #fff;
+    display: block;
+    
+
+    
+}
+
+
+
+
+
 .a{
     place-items: center;
     place-content: center; 
@@ -98,10 +133,11 @@ body{
 .form-row input {
     background-color: rgb(255, 255, 255);
     display: flex;
-    width: 350px;
+    width: 450px;
     border-radius: 10px ;
     border-color: 0%;
-    height: 25px;
+    height: 40px;
+
     
 }
 .row-2{
@@ -111,8 +147,16 @@ body{
     margin: 0px;
     
 }
-      
-
+#form1{
+    display: block;
+    transition: .2s ease-in !important;
+    padding-top: 50px;
+}     
+#form2{
+    display: none;
+    transition: .2s ease-in !important;
+    padding-top: 50px;
+}
 
 
 /***************************************************************************************************NAVBAR PART***************************************************************************************************************************/
@@ -139,13 +183,13 @@ body{
     -webkit-text-stroke-width:1px;
     transition: 1s ease-in;
     border-radius: 100px !important;
-    width: 80% ;
+    width:200px ;
     background: hsla(148, 42%, 18%, 0.8);
     font-weight: bold;
     font-size: 20px;
     margin: 5px auto;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    
+
     
     
 }
@@ -155,7 +199,7 @@ body{
     -webkit-text-stroke-width:1px;
     transition: 1s ease-in;
     border-radius: 100px !important;
-    width: auto ;
+    width: 200px ;
     padding-left: 40px;
     padding-right: 40px;
 
