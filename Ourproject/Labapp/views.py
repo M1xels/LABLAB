@@ -1,15 +1,20 @@
 from multiprocessing import context
+from django.contrib.messages.api import MessageFailure
+from django.forms.widgets import EmailInput
 from django.shortcuts import render, redirect
 from .models import *
-from django.contrib.auth.models import User
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
-import mysql.connector as sql
-from django.contrib.auth.forms import UserCreationForm
 from .forms import StaffRegistration, instructorRegistration
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import message, send_mail
+from django.core.mail import EmailMessage
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
 
 installed_apps = ['Labapp']
 
@@ -21,7 +26,22 @@ def adminregistration(request):
             Job_description = form.cleaned_data.get("UITC Staff")
             form.instance.Job_descriptions = 'UITC Staff'
             form.save()
-            messages.success(request, "You are now Registered")  
+            messages.success(request, "You are now Registered")
+            name = request.POST['first_name'] + " " + request.POST['last_name']
+            emails = request.POST['email']
+            message = "You are succesfully registered as " + request.POST['Job_description'] + "! \n Your Username is " + request.POST['username'] + '.'
+                
+
+            email = EmailMessage(
+                name,
+                message,
+                'lab.mon.tupc@gmail.com',
+                [emails],
+                    
+                )
+            
+            email.send()
+
             return redirect('/Index')
         else:
             messages.warning(request, "Recheck all your input info")
@@ -38,10 +58,25 @@ def registration(request):
     if request.method == "POST":
         form = instructorRegistration(request.POST)
         if form.is_valid():
-            job_description = form.cleaned_data.get("UITC Staff")
-            form.instance.job_description = 'Computer Instructor'
+            Job_description = form.cleaned_data.get("UITC Staff")
+            form.instance.Job_description = 'Computer Instructor'
             form.save()
             messages.success(request, 'You are now registered')
+            name = request.POST['first_name'] + " " + request.POST['last_name']
+            emails = request.POST['email']
+            message = "You are succesfully registered as " + request.POST['Job_description'] + "! \n Your Username is " + request.POST['username'] + '.'
+                
+
+            email = EmailMessage(
+                name,
+                message,
+                'lab.mon.tupc@gmail.com',
+                [emails],
+                    
+                )
+            
+            email.send()
+
             return redirect('/Index')
         else:
             messages.warning(request, "Recheck all your input info")
@@ -129,14 +164,11 @@ def EquipmentDevice(request):
 
 def update(request, id):
     a = perform_request.objects.get(id=id)
-    b = '<QuerySet [<perform_request: ' + str(a) + '>]>'
-    print(a)
+
     for x in perform_request.objects.only('id').filter(status= "Ongoing"):
         
-        print(x)
+        
         if a == x:
-            d = "a"
-            print(d)
             x = perform_request.objects.filter(id=id).update(status="Available")
             break
     messages.success(request, "Successfully done")
@@ -144,8 +176,6 @@ def update(request, id):
 
 def delete(request, id):
     a = perform_request.objects.get(id=id)
-    b = '<QuerySet [<perform_request: ' + str(a) + '>]>'
-    print(a)
     for x in perform_request.objects.only('id').filter(status= "Ongoing"):
         
         print(x)
@@ -169,12 +199,30 @@ def performrequest(request):
     else:
         return redirect('/Index')
 
+def emails(request): 
+    if request.method=='POST':
+        name = "Queries"
+        emailss = request.POST['emails']
+        messages = request.POST['messages']
+        email = EmailMessage(
+            name,
+            messages,
+            'lab.mon.tupc@gmail.com',
+            [emailss],
+                    
+            )
+            
+        email.send()
 
-    
+        return redirect('/homepage')
+
+
 @login_required(login_url='/Index')
 def records(request):
     if request.user.is_authenticated and request.user.Job_description == 'UITC Staff':
-        return render(request, 'pages/RECORDS.html')
+        data = perform_request.objects.all()
+        
+        return render(request, 'pages/RECORDS.html',{'data':data})
     elif request.user.is_authenticated and request.user.Job_description == 'Computer Instructor':
         return redirect('/homepage')
     else:

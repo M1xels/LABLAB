@@ -176,6 +176,18 @@
                         <th scope="col">Status</th>
                       </tr>
                     </thead>
+                    <tbody class="table-color">
+                      <tr id="row_data" >
+                        {% for report in data %}
+                        <td>{{report.name}}</td>
+                        <td>{{report.Lab_num}}</td>
+                        <td>{{report.Pc_num}}</td>
+                        <td>{{report.Type_report}}</td>
+                        <td>{{report.remarks}}</td>
+                        <td>{{report.status}}</td>                
+                      </tr>
+                        {% endfor%}
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -229,6 +241,7 @@
                         width: 500
                     }]
                 };
+                pdfMake.createPdf(docDefinition).open("reports-data.pdf");
                 pdfMake.createPdf(docDefinition).download("reports-data.pdf");
             }
         });

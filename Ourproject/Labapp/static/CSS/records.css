@@ -145,7 +145,8 @@ h4{
  
 }
 #pangalan{
-  color:rgb(255, 255, 255) ;
+  color: #9e200f !important;
+  -webkit-text-stroke: 1px #fffefe !important;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 60px !important;
   font-weight:lighter !important ;

@@ -82,7 +82,7 @@ DATABASES = {
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
-        'PORT': '3307',
+        'PORT': '3306',
 
     }
 }
@@ -134,3 +134,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR , 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'Labapp.register1'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'lab.mon.tupc@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'kwhnquklmtfjwfsy'
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

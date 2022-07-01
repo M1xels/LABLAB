@@ -149,7 +149,7 @@ body{
     
     
 }
-#cancel{
+#cance1l1{
     background-color:#720000;
     color:white;
     -webkit-text-stroke-width:1px;
@@ -266,7 +266,7 @@ header,
         
         border-top-left-radius: 1cm ;
         width: 700px;
-        height: 500px;
+        height: 600px;
         display: flex ;
         transition: .2s ease-in;
         
@@ -279,7 +279,7 @@ header,
         border-radius: 1cm;
         box-shadow: 12px 12px 22px black ;
         width: 1000px;
-        height: 500px;
+        height: 600px;
     }
     .n{
         place-items: center;
@@ -338,6 +338,32 @@ header,
         
         
         
+    }
+    #cancel{
+        background-color:#720000;
+        color:white;
+    
+        -webkit-text-stroke-width:1px;
+        transition: 1s ease-in;
+        cursor: pointer;
+        border-radius: 10px;
+    
+        
+        font-weight: bold;
+        place-items: center;
+        width: 120px;
+        height: 30px;
+        justify-content: center;
+        display: flex;
+        
+        background: hsla(148, 42%, 18%, 0.8);
+        margin: 20px auto;
+        padding: 10px ;
+        border: none;
+        outline: none;
+        font-weight: bold;
+        font-size: 20px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
     }
     .form-row input {
         background-color: rgb(255, 255, 255);

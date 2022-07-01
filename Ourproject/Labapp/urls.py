@@ -19,6 +19,7 @@ urlpatterns = [
     path('performrequest/', views.performrequest, name='performrequest'),
     path('update/<int:id>', views.update, name='update'),
     path('records/', views.records, name='records'),
+    path('emails/', views.emails, name='emails'),
     path('delete/<int:id>', views.delete, name='delete'),
     path('logout/', views.logoutUser, name='logout'),
 

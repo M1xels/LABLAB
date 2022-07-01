@@ -59,9 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row n" >
-                                    <a>
-                                        <button type="button" class="btn" id="cancel" >Space for picture</button> 
-                                    </a>
+
                                 </div>
                                 <div class="form-row n" >
                                     <label class="row-2">Username {{form.username}}  </label>
@@ -98,7 +96,7 @@
                                     <div class="col-4">
                                         <a>
                                             <button type="submit" class="btn" id="log" >Register</button>
-                                            <button type="button" class="btn" id="cancel" onclick="cancel1()">Cancel</button> 
+                                            <a type="button" class="btn" id="cancel" onclick="cancel1()" href="{% url 'Labapp:logout' %}" >Cancel</a> 
                                         </a>
                         
                                     </div>

@@ -75,8 +75,8 @@
               <h2 id="pangalan">REPORTS</h2> <br></br>
             </div>
             <div class="card-body">
-              <form method="post">
-                {%csrf_token%}
+              <form>
+                
                 <table class="table table-striped" id="tbl_report">
                   <thead class="thead">
                     <tr>
@@ -99,11 +99,8 @@
                       <td>{{report.Type_report}}</td>
                       <td>{{report.remarks}}</td>
                       <td>
-                        <a  type='button' id = 'Save' href="{% url 'Labapp:update' report.pk %}" >Available</a>
-                      </td>
-                      <td>
-                        <a  type='button' id = 'Save' href="{% url 'Labapp:delete' report.pk %}" >Delete</a>
-                      </td>
+                        <a class="btn btn-sm" type='button' id = 'Save' href="{% url 'Labapp:update' report.pk  %}" > Done </a>    <a class="btn btn-sm" type='button' id = 'Save' href="{% url 'Labapp:delete' report.pk %}" > Delete </a>
+                      </td>                
                     </tr>
                       {% endfor%}
                   </tbody>
